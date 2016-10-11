@@ -122,202 +122,100 @@ public void mouseReleased(MouseEvent e) {
                             newColor = new Color(0xB57EDC);   //Lavender (from http://simple.wikipedia.org/wiki/List_of_colors)
                             break;
                         }
-
-                    }
-
-                    
-
+                    }                    
                     myPanel.colorArray[myPanel.mouseDownGridX][i] = newColor;
-
                     myPanel.repaint();
-
                 }
-
             }
 
         	if(myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY].equals(grayColor)  && (myPanel.mouseDownGridX == 0) && (myPanel.mouseDownGridY == 0) ){
-
                 //Had pressed top left grey cell. 
-
-                for(int i = 1; i < 10; i++){
-
-                            
-
-                            Color newColor = myPanel.colorArray[i][i];
-
-                            
-
+                for(int i = 1; i < 10; i++){                           
+                            Color newColor = myPanel.colorArray[i][i];                          
                             while(myPanel.colorArray[i][i].equals(newColor)){
-
                                 switch (generator.nextInt(5)) {
-
                                 case 0:
-
                                     newColor = Color.YELLOW;
-
                                     break;
-
                                 case 1:
-
                                     newColor = Color.MAGENTA;
-
                                     break;
-
                                 case 2:
-
                                     newColor = Color.BLACK;
-
                                     break;
-
                                 case 3:
-
                                     newColor = new Color(0x964B00);   //Brown (from http://simple.wikipedia.org/wiki/List_of_colors)
-
                                     break;
-
                                 case 4:
-
                                     newColor = new Color(0xB57EDC);   //Lavender (from http://simple.wikipedia.org/wiki/List_of_colors)
-
                                     break;
-
                                 }
-
-                            }
-
-                            
-
-                            myPanel.colorArray[i][i] = newColor;
-
-                            myPanel.repaint();
-
-                        }
-
-            }
-
-        	if(myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY].equals(grayColor)  && (myPanel.mouseDownGridX == 0) && (myPanel.mouseDownGridY == 10) ){
-
-                //Had pressed a bottom left grey cell. 
-
-                for(int i = 4; i <= 6; i++){
-                            
-
-                            for(int j = 4; j <=6; j++){
-
-                                Color newColor = myPanel.colorArray[i][j];                           
-
-                                while(myPanel.colorArray[i][j].equals(newColor)){
-
-                                    switch (generator.nextInt(5)) {
-
-                                    case 0:
-
-                                        newColor = Color.YELLOW;
-
-                                        break;
-
-                                    case 1:
-
-                                        newColor = Color.MAGENTA;
-
-                                        break;
-
-                                    case 2:
-
-                                        newColor = Color.BLACK;
-
-                                        break;
-
-                                    case 3:
-
-                                        newColor = new Color(0x964B00);   //Brown (from http://simple.wikipedia.org/wiki/List_of_colors)
-
-                                        break;
-
-                                    case 4:
-
-                                        newColor = new Color(0xB57EDC);   //Lavender (from http://simple.wikipedia.org/wiki/List_of_colors)
-
-                                        break;
-
-                                    }
-
-                                }
-
-                                myPanel.colorArray[i][j] = newColor;
-
-                                myPanel.repaint();
-
                             }                          
-
+                            myPanel.colorArray[i][i] = newColor;
+                            myPanel.repaint();
+                        }
+            }
+        	if(myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY].equals(grayColor)  && (myPanel.mouseDownGridX == 0) && (myPanel.mouseDownGridY == 10) ){
+                //Had pressed a bottom left grey cell. 
+                for(int i = 4; i <= 6; i++){                           
+                            for(int j = 4; j <=6; j++){
+                                Color newColor = myPanel.colorArray[i][j];                           
+                                while(myPanel.colorArray[i][j].equals(newColor)){
+                                    switch (generator.nextInt(5)) {
+                                    case 0:
+                                        newColor = Color.YELLOW;
+                                        break;
+                                    case 1:
+                                        newColor = Color.MAGENTA;
+                                        break;
+                                    case 2:
+                                        newColor = Color.BLACK;
+                                        break;
+                                    case 3:
+                                        newColor = new Color(0x964B00);   //Brown (from http://simple.wikipedia.org/wiki/List_of_colors)
+                                        break;
+                                    case 4:
+                                        newColor = new Color(0xB57EDC);   //Lavender (from http://simple.wikipedia.org/wiki/List_of_colors)
+                                        break;
+                                    }
+                                }
+                                myPanel.colorArray[i][j] = newColor;
+                                myPanel.repaint();
+                            }                          
                 }
-
         	}
-
             if ((gridX == -1) || (gridY == -1)) {
-
                 //Is releasing outside
-
                 //Do nothing
-
             } else {               
-
                 if ((myPanel.mouseDownGridX != gridX) || (myPanel.mouseDownGridY != gridY)) {
-
                     //Released the mouse button on a different cell where it was pressed
-
                     //Do nothing
-
                 } else {
-
                     //Released the mouse button on the same cell where it was pressed
-
                     if ((gridX == 0) || (gridY == 0)) {
-
                         //do nothing
-
                     } else {
-
                         //On the grid other than on the left column and on the top row:
-
                         System.out.println(myPanel.mouseDownGridX);
-
                         System.out.println(myPanel.mouseDownGridY);
-
                         Color newColor = null;
-
                         switch (generator.nextInt(5)) {
-
                         case 0:
-
                             newColor = Color.YELLOW;
-
                             break;
-
                         case 1:
-
                             newColor = Color.MAGENTA;
-
                             break;
-
                         case 2:
-
                             newColor = Color.BLACK;
-
                             break;
-
                         case 3:
-
                             newColor = new Color(0x964B00);   //Brown (from http://simple.wikipedia.org/wiki/List_of_colors)
-
                             break;
-
                         case 4:
-
                             newColor = new Color(0xB57EDC);   //Lavender (from http://simple.wikipedia.org/wiki/List_of_colors)
-
                             break;
-
                         }
                         myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY] = newColor;
                         myPanel.repaint();
