@@ -7,11 +7,11 @@ import javax.swing.JPanel;
 
 public class MyPanel extends JPanel {
 	private static final long serialVersionUID = 3426940946811133635L;
-	private static final int GRID_X = 25;
-	private static final int GRID_Y = 25;
+	private static final int GRID_X = 50;
+	private static final int GRID_Y = 60;
 	private static final int INNER_CELL_SIZE = 29;
-	private static final int TOTAL_COLUMNS = 10;
-	private static final int TOTAL_ROWS = 11;   //Last row has only one cell
+	private static final int TOTAL_COLUMNS = 9;
+	private static final int TOTAL_ROWS = 9;   //Last row has only one cell
 	public int x = -1;
 	public int y = -1;
 	public int mouseDownGridX = 0;
@@ -51,7 +51,8 @@ public class MyPanel extends JPanel {
 		int width = x2 - x1;
 		int height = y2 - y1;
 
-		//Paint the background
+		// Paint the backgroundcase 3:
+        
 		g.setColor(Color.LIGHT_GRAY);
 		g.fillRect(x1, y1, width + 1, height + 1);
 
@@ -66,7 +67,7 @@ public class MyPanel extends JPanel {
 		}
 
 		//Draw an additional cell at the bottom left
-		g.drawRect(x1 + GRID_X, y1 + GRID_Y + ((INNER_CELL_SIZE + 1) * (TOTAL_ROWS - 1)), INNER_CELL_SIZE + 1, INNER_CELL_SIZE + 1);
+		//g.drawRect(x1 + GRID_X, y1 + GRID_Y + ((INNER_CELL_SIZE + 1) * (TOTAL_ROWS - 1)), INNER_CELL_SIZE + 1, INNER_CELL_SIZE + 1);
 
 		//Paint cell colors
 		for (int x = 0; x < TOTAL_COLUMNS; x++) {
@@ -96,9 +97,9 @@ public class MyPanel extends JPanel {
 		}
 		x = x / (INNER_CELL_SIZE + 1);
 		y = y / (INNER_CELL_SIZE + 1);
-		if (x == 0 && y == TOTAL_ROWS - 1) {    //The lower left extra cell
-			return x;
-		}
+//		if (x == 0 && y == TOTAL_ROWS - 1) {    //The lower left extra cell
+//			return x;
+//		}
 		if (x < 0 || x > TOTAL_COLUMNS - 1 || y < 0 || y > TOTAL_ROWS - 2) {   //Outside the rest of the grid
 			return -1;
 		}
@@ -121,9 +122,9 @@ public class MyPanel extends JPanel {
 		}
 		x = x / (INNER_CELL_SIZE + 1);
 		y = y / (INNER_CELL_SIZE + 1);
-		if (x == 0 && y == TOTAL_ROWS - 1) {    //The lower left extra cell
-			return y;
-		}
+		//if (x == 0 && y == TOTAL_ROWS - 1) {    //The lower left extra cell
+		//	return y;
+		//}
 		if (x < 0 || x > TOTAL_COLUMNS - 1 || y < 0 || y > TOTAL_ROWS - 2) {   //Outside the rest of the grid
 			return -1;
 		}
