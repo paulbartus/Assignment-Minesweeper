@@ -64,9 +64,9 @@ public void mouseReleased(MouseEvent e) {
         int y = e.getY();
         myPanel.x = x;
         myPanel.y = y;
-
         int gridX = myPanel.getGridX(x, y);
         int gridY = myPanel.getGridY(x, y);
+       
         if ((myPanel.mouseDownGridX == -1) || (myPanel.mouseDownGridY == -1)) {
             //Had pressed outside
             //Do nothing
@@ -95,7 +95,6 @@ public void mouseReleased(MouseEvent e) {
                         myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY] = newColor;
                         myPanel.repaint();
                     }
-                    
                 }
             }
         }
@@ -110,4 +109,3 @@ public void mouseReleased(MouseEvent e) {
         }
     }
 }
-
