@@ -1,4 +1,5 @@
 import javax.swing.JFrame;
+//import javax.swing.JButton;
 
 public class Main {
 	public static void main(String[] args) {
@@ -12,7 +13,12 @@ public class Main {
 
 		MyMouseAdapter myMouseAdapter = new MyMouseAdapter();
 		myFrame.addMouseListener(myMouseAdapter);
-
+		
+//		JButton button = new JButton();
+//	    myFrame.add(button);
+//		button.setLocation(200, 300);
+//		button.setSize(50,50);
+		
 		myFrame.setVisible(true);
 	}
 }
