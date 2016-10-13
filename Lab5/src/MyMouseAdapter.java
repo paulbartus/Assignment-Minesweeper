@@ -101,17 +101,12 @@ public void mouseReleased(MouseEvent e) {
                     System.out.println(myPanel.mouseDownGridX);
                     System.out.println(myPanel.mouseDownGridY);
                     Color newColor = null;
-                    switch (0) {
-                    case 0:
-                        newColor = Color.GRAY;
-                        if(myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY].equals(Color.RED)) {
-                            newColor = Color.RED;
-                        }
-                     
-                        break;
-                        }
-                        myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY] = newColor;
-                        myPanel.repaint();
+                    newColor = Color.GRAY;
+                    if(myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY].equals(Color.RED)) {
+                    newColor = Color.RED;
+                    }
+                    myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY] = newColor;
+                    myPanel.repaint();
                     }
                }
          }
