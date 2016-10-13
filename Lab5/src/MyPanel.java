@@ -11,7 +11,7 @@ public class MyPanel extends JPanel {
 	private static final int GRID_Y = 60;
 	private static final int INNER_CELL_SIZE = 29;
 	private static final int TOTAL_COLUMNS = 9;
-	private static final int TOTAL_ROWS = 9;   //Last row has only one cell
+	private static final int TOTAL_ROWS = 9;   
 	public int x = -1;
 	public int y = -1;
 	public int mouseDownGridX = 0;
@@ -28,14 +28,14 @@ public class MyPanel extends JPanel {
 			throw new RuntimeException("TOTAL_ROWS must be at least 3!");
 		}
 		for (int x = 0; x < TOTAL_COLUMNS; x++) {   //Top row
-			colorArray[x][0] = Color.LIGHT_GRAY;
+			colorArray[x][0] = Color.WHITE;
 		}
 		for (int y = 0; y < TOTAL_ROWS; y++) {   //Left column
-			colorArray[0][y] = Color.LIGHT_GRAY;
+			colorArray[0][y] = Color.WHITE;
 		}
 		for (int x = 1; x < TOTAL_COLUMNS; x++) {   //The rest of the grid
 			for (int y = 1; y < TOTAL_ROWS; y++) {
-				colorArray[x][y] = Color.LIGHT_GRAY;
+				colorArray[x][y] = Color.WHITE;
 			}
 		}
 	}
@@ -53,28 +53,29 @@ public class MyPanel extends JPanel {
 
 		// Paint the backgroundcase 3:
         
-		g.setColor(Color.WHITE);
-		g.fillRect(x1, y1, width + 1, height + 1 );
+		g.setColor(Color.DARK_GRAY);
+		g.fillRect(x1, y1, width +1, height +1 );
 
 		//Draw the grid minus the bottom row (which has only one cell)
 		//By default, the grid will be 9x9 (see above: TOTAL_COLUMNS and TOTAL_ROWS) 
 		g.setColor(Color.BLACK);
-		for (int y = 0; y <= TOTAL_ROWS - 1; y++) {
+		for (int y = 0; y <= TOTAL_ROWS - 0; y++) {
 			g.drawLine(x1 + GRID_X, y1 + GRID_Y + (y * (INNER_CELL_SIZE + 1)), x1 + GRID_X + ((INNER_CELL_SIZE + 1) * TOTAL_COLUMNS), y1 + GRID_Y + (y * (INNER_CELL_SIZE + 1)));
 		}
 		for (int x = 0; x <= TOTAL_COLUMNS; x++) {
-			g.drawLine(x1 + GRID_X + (x * (INNER_CELL_SIZE + 1)), y1 + GRID_Y, x1 + GRID_X + (x * (INNER_CELL_SIZE + 1)), y1 + GRID_Y + ((INNER_CELL_SIZE + 1) * (TOTAL_ROWS - 1)));
+			g.drawLine(x1 + GRID_X + (x * (INNER_CELL_SIZE + 1)), y1 + GRID_Y, x1 + GRID_X + (x * (INNER_CELL_SIZE + 1)), y1 + GRID_Y + ((INNER_CELL_SIZE + 1) * (TOTAL_ROWS)));
 		}
 
 		
 		//Paint cell colors
 		for (int x = 0; x < TOTAL_COLUMNS; x++) {
 			for (int y = 0; y < TOTAL_ROWS; y++) {
-				if ((x == 0) || (y != TOTAL_ROWS - 1)) {
+				    if ((x == 0) || (y != TOTAL_ROWS - 0)) {
 					Color c = colorArray[x][y];
 					g.setColor(c);
 					g.fillRect(x1 + GRID_X + (x * (INNER_CELL_SIZE + 1)) + 1, y1 + GRID_Y + (y * (INNER_CELL_SIZE + 1)) +1, INNER_CELL_SIZE, INNER_CELL_SIZE);
 				}
+				    
 			}
 		}
 	}
@@ -119,7 +120,7 @@ public class MyPanel extends JPanel {
 		x = x / (INNER_CELL_SIZE + 1);
 		y = y / (INNER_CELL_SIZE + 1);
 		//if (x == 0 && y == TOTAL_ROWS - 1) {    //The lower left extra cell
-		//	return y;
+			//return y;
 		//}
 		if (x < 0 || x > TOTAL_COLUMNS - 1 || y < 0 || y > TOTAL_ROWS - 2) {   //Outside the rest of the grid
 			return -1;
