@@ -7,7 +7,7 @@ import java.util.Random;
 import javax.swing.JFrame;
 
 public class MyMouseAdapter extends MouseAdapter {
-    //private Random generator = new Random();
+    private Random generator = new Random();
     
     public void mousePressed(MouseEvent e) {    
     switch (e.getButton()) {
@@ -34,8 +34,27 @@ public class MyMouseAdapter extends MouseAdapter {
         myPanel.repaint();
         break;
         
-    case 3:		//Right mouse button
-        //Do nothing'
+    case 3:	//Right mouse button
+    	Component d = e.getComponent();
+        while (!(d instanceof JFrame)) {
+            d = d.getParent();
+            if (d == null) {
+                return;
+            }
+        }
+        JFrame myFrame2 = (JFrame) d;
+        MyPanel myPanel2 = (MyPanel) myFrame2.getContentPane().getComponent(0);  
+        Insets myInsets2 = myFrame2.getInsets();
+        int x2 = myInsets2.left;
+        int y2 = myInsets2.top;
+        e.translatePoint(-x2, -y2);
+        int x3 = e.getX();
+        int y3 = e.getY();
+        myPanel2.x = x3;
+        myPanel2.y = y3;
+        myPanel2.mouseDownGridX = myPanel2.getGridX(x3, y3);
+        myPanel2.mouseDownGridY = myPanel2.getGridY(x3, y3);
+        myPanel2.repaint();
         break;
     default:	//Some other button (2 = Middle mouse button, etc.)
         //Do nothing
@@ -56,8 +75,6 @@ public void mouseReleased(MouseEvent e) {
         JFrame myFrame = (JFrame)c;
         MyPanel myPanel = (MyPanel) myFrame.getContentPane().getComponent(0);  //Can also loop among components to find MyPanel
         Insets myInsets = myFrame.getInsets();
-        //Color whiteColor = Color.WHITE;
-        //Color grayColor = Color.LIGHT_GRAY;
         int x1 = myInsets.left;
         int y1 = myInsets.top;
         e.translatePoint(-x1, -y1);
@@ -79,26 +96,78 @@ public void mouseReleased(MouseEvent e) {
                 if ((myPanel.mouseDownGridX != gridX) || (myPanel.mouseDownGridY != gridY)) {
                     //Released the mouse button on a different cell where it was pressed
                     //Do nothing
-                }  else {
-                        //Released on the grid.
-                        System.out.println(myPanel.mouseDownGridX);
-                        System.out.println(myPanel.mouseDownGridY);
-                        Color newColor = null;
-                        switch (0) {
-                        case 0:
-                            newColor = Color.WHITE;
-                            break;
+                } else {
+                    //Released on the grid
+                    System.out.println(myPanel.mouseDownGridX);
+                    System.out.println(myPanel.mouseDownGridY);
+                    Color newColor = null;
+                    switch (0) {
+                    case 0:
+                        newColor = Color.GRAY;
+                        if(myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY].equals(Color.RED)) {
+                            newColor = Color.RED;
+                        }
+                     
+                        break;
                         }
                         myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY] = newColor;
                         myPanel.repaint();
                     }
-            }
-        }
+               }
+         }
         myPanel.repaint();
         break;
-    case 3:        //Right mouse button
-        //Do nothing	
-    	
+        
+     case 3:        //Right mouse button
+    	Component d = e.getComponent();
+        while (!(d instanceof JFrame)) {
+            d = d.getParent();
+            if (d == null) {
+                return;
+            }
+        }
+        JFrame myFrame2 = (JFrame)d;
+        MyPanel myPanel2 = (MyPanel) myFrame2.getContentPane().getComponent(0);  //Can also loop among components to find MyPanel
+        Insets myInsets2 = myFrame2.getInsets();
+        int x2 = myInsets2.left;
+        int y2 = myInsets2.top;
+        e.translatePoint(-x2, -y2);
+        int x3 = e.getX();
+        int y3 = e.getY();
+        myPanel2.x = x3;
+        myPanel2.y = y3;
+        int grid_X = myPanel2.getGridX(x3, y3);
+        int grid_Y = myPanel2.getGridY(x3, y3);
+        if ((myPanel2.mouseDownGridX == -1) || (myPanel2.mouseDownGridY == -1)) {
+            //Had pressed outside
+            //Do nothing
+        } else {
+               if ((grid_X == -1) || (grid_Y == -1)) {
+               //Is releasing outside
+               //Do nothing
+               } else  {
+                        Color newColor = null;
+                        switch(generator.nextInt(1)) {
+                        case 0:
+                            if(myPanel2.colorArray[myPanel2.mouseDownGridX][myPanel2.mouseDownGridY].equals(Color.RED)) {
+                            newColor = Color.WHITE;
+                            }else  {
+                           	 newColor= Color.RED;
+                            }
+                            
+                        case 1:
+                       	    if(myPanel2.colorArray[myPanel2.mouseDownGridX][myPanel2.mouseDownGridY].equals(Color.GRAY))   {
+                            newColor = Color.GRAY;
+                        }
+                        break;
+               }
+                        myPanel2.colorArray[myPanel2.mouseDownGridX][myPanel2.mouseDownGridY] = newColor;
+                        myPanel2.repaint();
+           
+                        }
+               }
+            
+        myPanel2.repaint();
         break;
     default:    //Some other button (2 = Middle mouse button, etc.)
         //Do nothing
