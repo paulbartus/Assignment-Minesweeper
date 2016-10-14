@@ -2,7 +2,6 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Insets;
 import java.util.Random;
-
 import javax.swing.JPanel;
 
 public class MyPanel extends JPanel {
@@ -16,7 +15,9 @@ public class MyPanel extends JPanel {
 	public int y = -1;
 	public int mouseDownGridX = 0;
 	public int mouseDownGridY = 0;
+	public int[][] minesArray = new int[TOTAL_COLUMNS][TOTAL_ROWS];
 	public Color[][] colorArray = new Color[TOTAL_COLUMNS][TOTAL_ROWS];
+	Random generator = new Random();
 	public MyPanel() {   //This is the constructor... this code runs first to initialize,
 		if (INNER_CELL_SIZE + (new Random()).nextInt(1) < 1) {	//Use of "random" to prevent unwanted Eclipse warning.
 			throw new RuntimeException("INNER_CELL_SIZE must be positive!");
@@ -27,18 +28,31 @@ public class MyPanel extends JPanel {
 		if (TOTAL_ROWS + (new Random()).nextInt(1) < 3) {	//Use of "random" to prevent unwanted Eclipse warning
 			throw new RuntimeException("TOTAL_ROWS must be at least 3!");
 		}
-		for (int x = 0; x < TOTAL_COLUMNS; x++) {   //Top row
-			colorArray[x][0] = Color.WHITE;
-		}
-		for (int y = 0; y < TOTAL_ROWS; y++) {   //Left column
-			colorArray[0][y] = Color.WHITE;
-		}
-		for (int x = 1; x < TOTAL_COLUMNS; x++) {   //The rest of the grid
-			for (int y = 1; y < TOTAL_ROWS; y++) {
+		for (int x = 0; x < TOTAL_COLUMNS; x++) {   //The rest of the grid
+			for (int y = 0; y < TOTAL_ROWS; y++) {
 				colorArray[x][y] = Color.WHITE;
 			}
 		}
 	}
+	
+	public void minesGeneration(){
+	    for(int columns = 0; columns < TOTAL_COLUMNS; columns++ ) //Initialize minesArray to 0.
+	    	for(int rows = 0; rows < TOTAL_ROWS; rows++){
+			minesArray[columns][rows] = 0;
+		}        
+	     for (int minesCounter = 10; minesCounter > 0;) { //Mines (1's) assignment.
+	    	 int x = generator.nextInt(TOTAL_COLUMNS); 
+	         int y = generator.nextInt(TOTAL_ROWS);
+	          
+			if(minesArray[x][y] == 1){
+			//Do nothing
+		    } else {           
+			minesArray[x][y] = 1;   //Assign mine.
+			minesCounter--;				
+	       }
+		}
+	}
+	
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 
