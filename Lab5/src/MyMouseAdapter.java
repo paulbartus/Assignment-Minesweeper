@@ -7,7 +7,8 @@ import java.util.Random;
 import javax.swing.JFrame;
 
 public class MyMouseAdapter extends MouseAdapter {
-    private Random generator = new Random();
+    int flags = 0;
+	private Random generator = new Random();
     
     public void mousePressed(MouseEvent e) {    
     switch (e.getButton()) {
@@ -104,6 +105,12 @@ public void mouseReleased(MouseEvent e) {
                     newColor = Color.GRAY;
                     if(myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY].equals(Color.RED)) {
                     newColor = Color.RED;
+                    
+//                    if(myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY].equals(Color.BLACK)) {
+//                    newColor = Color.BLACK;
+//                    } else {
+//                    	
+//                    }
                     }
                     myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY] = newColor;
                     myPanel.repaint();
@@ -146,10 +153,16 @@ public void mouseReleased(MouseEvent e) {
                         case 0:
                             if(myPanel2.colorArray[myPanel2.mouseDownGridX][myPanel2.mouseDownGridY].equals(Color.RED)) {
                             newColor = Color.WHITE;
-                            }else  {
-                           	 newColor= Color.RED;
+                            flags = flags - 1;
+                            }else {
+                            if (flags > 9){
+                            newColor = Color.WHITE;
                             }
-                            
+                            else{
+                            	newColor = Color.RED;
+                            	flags = flags + 1;
+                            }
+                            } 
                         case 1:
                        	    if(myPanel2.colorArray[myPanel2.mouseDownGridX][myPanel2.mouseDownGridY].equals(Color.GRAY))   {
                             newColor = Color.GRAY;

@@ -51,7 +51,7 @@ public class MyPanel extends JPanel {
 		int width = x2 - x1;
 		int height = y2 - y1;
 
-		// Paint the backgroundcase 3:
+		// Paint the background.
         
 		g.setColor(Color.DARK_GRAY);
 		g.fillRect(x1, y1, width + 1, height + 1 );
@@ -63,7 +63,8 @@ public class MyPanel extends JPanel {
 			g.drawLine(x1 + GRID_X, y1 + GRID_Y + (y * (INNER_CELL_SIZE + 1)), x1 + GRID_X + ((INNER_CELL_SIZE + 1) * TOTAL_COLUMNS), y1 + GRID_Y + (y * (INNER_CELL_SIZE + 1)));
 		}
 		for (int x = 0; x <= TOTAL_COLUMNS; x++) {
-			g.drawLine(x1 + GRID_X + (x * (INNER_CELL_SIZE + 1)), y1 + GRID_Y, x1 + GRID_X + (x * (INNER_CELL_SIZE + 1)), y1 + GRID_Y + ((INNER_CELL_SIZE + 1) * (TOTAL_ROWS - 1)));		}
+			g.drawLine(x1 + GRID_X + (x * (INNER_CELL_SIZE + 1)), y1 + GRID_Y, x1 + GRID_X + (x * (INNER_CELL_SIZE + 1)), y1 + GRID_Y + ((INNER_CELL_SIZE + 1) * (TOTAL_ROWS - 1)));	
+		}
         
 	    //Paint cell colors
 		for (int x = 0; x < TOTAL_COLUMNS; x++) {

@@ -14,10 +14,10 @@ public class Main {
 		MyMouseAdapter myMouseAdapter = new MyMouseAdapter();
 		myFrame.addMouseListener(myMouseAdapter);
 		
-//		JButton button = new JButton();
-//	    myFrame.add(button);
-//		button.setLocation(200, 300);
-//		button.setSize(50,50);
+    	//JButton button = new JButton();
+        //myFrame.add(button);
+		//button.setLocation(200, 300);
+		//button.setSize(0,0);
 		
 		myFrame.setVisible(true);
 	}
