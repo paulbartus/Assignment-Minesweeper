@@ -33,6 +33,7 @@ public class MyPanel extends JPanel {
 				colorArray[x][y] = Color.WHITE;
 			}
 		}
+		minesGeneration();
 	}
 	
 	public void minesGeneration(){
@@ -91,6 +92,7 @@ public class MyPanel extends JPanel {
 			}
 		}
 	}
+	
 	public int getGridX(int x, int y) {
 		Insets myInsets = getInsets();
 		int x1 = myInsets.left;
@@ -114,6 +116,7 @@ public class MyPanel extends JPanel {
 		}
 		return x;
 	}
+	
 	public int getGridY(int x, int y) {
 		Insets myInsets = getInsets();
 		int x1 = myInsets.left;
