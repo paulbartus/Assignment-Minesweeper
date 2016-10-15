@@ -104,15 +104,15 @@ public void mouseReleased(MouseEvent e) {
                     System.out.println(myPanel.mouseDownGridY);
 
                     if(myPanel.minesArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY] == 1){
-                    	for(int j = 0; j < 9; j++){
+                    	for(int j = 0; j < 9; j++)
                     		for(int k = 0; k < 10; k++){
     	                     if(myPanel.minesArray[j][k] == 1){
     	                    	 myPanel.colorArray[j][k] = Color.BLACK;
     	                    	 myPanel.repaint();
     	                      }
                     	   }
-                    	}                 
-                    } else{
+                    	System.out.println("You lost!");
+                    	 } else{
                     	myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY] = Color.GRAY;
                     }
                     myPanel.repaint();
